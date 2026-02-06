@@ -5,9 +5,9 @@ use script_bench::koto::RustData;
 
 fn benchmark(c: &mut Criterion) {
     script_bench::koto::sort_userdata(
-        |func| {
+        |mut func| {
             c.bench_function("Sort Rust objects", |b| {
-                b.iter(|| func());
+                b.iter(&mut func);
             });
         },
         |value| {
